@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import FilterForm from "./FilterForm";
 import ProduktList from "./ProductList";
-
+import products, { categories } from "../products";
 import Filterstatus from "./Filterstatus";
-
+import { isBuffer } from "util";
 import { getFormattedMinMax } from "./Helpers";
 
 export default function Finder() {
@@ -88,6 +88,7 @@ export default function Finder() {
   }
 
   const filteredProducts = getFilteredProducts(
+    products,
     saleOnly,
     keyword,
     category,
@@ -151,7 +152,8 @@ function getFilteredProducts(
   category2,
   category3,
   min,
-  max
+  max,
+  filterHidden
 ) {
   /* Speichere die Information, ob der Filter NICHT aktiv ist */
 
@@ -186,6 +188,13 @@ function getFilteredProducts(
   // console.log("Preis: " + price);
   const noSaleFilter = !saleOnly;
 
+  const noCategoryFilterAll = 1 && 2 && 3;
+  const noCategoryFilter = category === 0;
+  const noFilter =
+    filterHidden === true
+      ? category === 0 || noKeywordFilter || noPriceFilter
+      : null;
+  const filterHiddenAll = category === 0;
   // Prüfe, ob mindestens zwei Zeichen eingegeben wurden
   const noKeywordFilter = keyword.length < 2;
   const noPriceFilter = price === minPrice;
