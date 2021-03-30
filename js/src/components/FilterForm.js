@@ -3,8 +3,6 @@ import { categories } from "../products";
 import products from "../products";
 import { getFormattedPrice } from "./Helpers";
 import classNames from "classnames";
-import { useState } from "react";
-import { css } from "styled-components";
 
 const maxPrice = Math.max.apply(
   Math,
@@ -27,8 +25,6 @@ export default function FilterForm({
   setSaleOnly,
   keyword,
   setKeyword,
-  setCategory,
-  category,
   price,
   setPrice,
   setCategory1,
