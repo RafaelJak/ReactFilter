@@ -228,8 +228,7 @@ function getFilteredProducts(
       (product) =>
         noPriceFilter ||
         (product.price >= minPriceNew && product.price <= maxPriceNew)
-    )
-    .filter((product) => noFilter || );
+    );
 
   return filteredProducts;
 }
